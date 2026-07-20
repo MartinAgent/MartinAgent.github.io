@@ -1,9 +1,13 @@
 /* ==========================================================================
-   DRAFTING TABLE — homepage theme
+   DRAFTING TABLE — site theme
    --------------------------------------------------------------------------
-   Every rule is scoped under .theme-draft, which is set on <body> in
-   index.html only. The other pages load styles.css alone and are untouched.
-   To revert: drop the class, drop the <link> to this file.
+   Engineering-drawing language: hairline grid, dimension lines, registration
+   marks, sheet/section numbering, square corners, paper/graphite/drafting
+   blue with red annotations.
+
+   Every rule is scoped under .theme-draft, set on <body> in index, skills,
+   portfolio and timeline. It layers over styles.css rather than replacing it,
+   so reverting a page is removing its body class and its <link> to this file.
    ========================================================================== */
 
 .theme-draft {
@@ -255,19 +259,28 @@
   .theme-draft .aboutContainer { padding-left: 0; padding-right: 0; }
 }
 
-/* only the section intro, not the row titles — they share .section-heading */
-.theme-draft #about .text-center .section-heading {
+/* Section intros across every page. styles.css targets these as
+   `.page-section h2.section-heading`, so these selectors have to outrank it.
+   The About row titles also carry .section-heading, but their #about rule
+   outranks both. */
+.theme-draft .section-heading,
+.theme-draft .page-section h2.section-heading,
+.theme-draft .page-section .section-heading.h2 {
   font-family: var(--mono);
   font-size: .7rem;
   font-weight: 500;
   letter-spacing: .22em;
   color: var(--blue);
+  margin-bottom: .6rem;
 }
-.theme-draft #about .section-subheading {
+.theme-draft .section-subheading,
+.theme-draft .page-section h3.section-subheading,
+.theme-draft .page-section .section-subheading.h3 {
   font-family: var(--sans);
   font-style: normal;
   font-size: .9rem;
   color: var(--ink3);
+  text-transform: none;
 }
 
 .theme-draft .aboutContainer { counter-reset: sheet; gap: 0; }
@@ -399,3 +412,274 @@
   .theme-draft .aboutRow > [class*="col-sm-"] { flex: 1 1 auto; width: 100%; }
   .theme-draft .fig-cap { font-size: .58rem; }
 }
+
+/* ==========================================================================
+   Shared controls
+   ========================================================================== */
+.theme-draft .btn-primary {
+  border-radius: 0;
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .14em;
+  font-weight: 500;
+  background: var(--graphite);
+  border: 1px solid var(--graphite);
+  color: var(--paper);
+}
+.theme-draft .btn-primary:hover { background: var(--blue); border-color: var(--blue); color: var(--paper); }
+
+.theme-draft .btn-social,
+.theme-draft .btn-dark.btn-social {
+  border-radius: 0 !important;
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink3);
+}
+.theme-draft .btn-social:hover,
+.theme-draft .btn-dark.btn-social:hover {
+  background: var(--graphite);
+  border-color: var(--graphite);
+  color: var(--paper);
+}
+
+/* modals — resume + the 17 portfolio ones */
+.theme-draft .modal-content {
+  border-radius: 0;
+  border: 1px solid var(--graphite);
+  background: var(--paper);
+  box-shadow: none;
+}
+.theme-draft .modal-body { font-family: var(--sans); color: var(--ink2); }
+.theme-draft .close-modal { border-radius: 0; }
+
+/* ==========================================================================
+   Timeline
+   ========================================================================== */
+.theme-draft .timeline:before { background-color: var(--rule); width: 1px; }
+
+/* square plates instead of circles — no rounded corners anywhere */
+.theme-draft .timeline > li .timeline-image {
+  border-radius: 0 !important;
+  background: #fff !important;
+  border: 1px solid var(--graphite);
+  padding: 5px;
+  box-shadow: none;
+}
+.theme-draft .timeline > li .timeline-image img {
+  border-radius: 0 !important;
+  border: 0;              /* styles.css puts a 2px gold ring here */
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(.35) contrast(1.04);
+}
+/* the birth marker has no image, just a date — keep it as a solid plate */
+.theme-draft .timeline > li:last-child .timeline-image {
+  background: var(--blue) !important;
+  border-color: var(--blue);
+}
+.theme-draft .timeline > li .timeline-image h4 {
+  font-family: var(--mono);
+  font-size: 9px;
+  line-height: 13px;
+  letter-spacing: .08em;
+  color: #fff;
+  margin: 0;
+}
+
+.theme-draft .timeline .timeline-heading h4:not(.subheading) {
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .14em;
+  color: var(--blue);
+  margin-bottom: .35rem;
+}
+.theme-draft .timeline .timeline-heading .subheading {
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -.015em;
+  color: var(--graphite);
+  text-transform: none;
+}
+.theme-draft .timeline .timeline-body p {
+  font-family: var(--sans);
+  font-size: .88rem;
+  line-height: 1.7;
+  color: var(--ink2) !important;
+}
+.theme-draft .timeline .timeline-body a {
+  color: var(--graphite);
+  text-decoration: none;
+  border-bottom: 1px solid var(--red);
+}
+
+/* ==========================================================================
+   Skills
+   ========================================================================== */
+/* styles.css pins this to a fixed column count with a 12rem minimum, which
+   overflows between breakpoints. auto-fit adapts instead. */
+.theme-draft .skillListContainer {
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  padding: 0;
+  gap: .6rem;
+}
+
+.theme-draft .hardSkill {
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .06em;
+  color: var(--ink2);
+  padding: .55rem .7rem;
+}
+
+/* the coin keeps its circle — a turned part reads fine on a drawing */
+.theme-draft .coin-face {
+  box-shadow: none;
+  border: 1px solid var(--graphite);
+}
+.theme-draft .coin-face--front {
+  background: #FAF9F5;
+  box-shadow: inset 0 0 0 9px var(--paper), inset 0 0 0 10px var(--rule);
+}
+.theme-draft .coin-face--back {
+  background: var(--blue);
+  border-color: var(--blue);
+  box-shadow: inset 0 0 0 9px var(--blue), inset 0 0 0 10px rgba(255,255,255,.35);
+}
+.theme-draft .coin-face h4 {
+  font-family: var(--sans);
+  font-weight: 600;
+  letter-spacing: -.015em;
+  font-size: 1.2rem;
+  color: var(--graphite);
+}
+.theme-draft .coin-face p { font-family: var(--sans); color: var(--ink2) !important; }
+.theme-draft .coin-face--back h4 { color: #fff; }
+.theme-draft .coin-face--back p { color: rgba(255,255,255,.86) !important; }
+.theme-draft .coin:focus-visible { outline-color: var(--blue); }
+.theme-draft .coin-hint {
+  font-family: var(--mono);
+  font-size: .66rem;
+  letter-spacing: .14em;
+  color: var(--ink3);
+}
+
+/* certifications */
+.theme-draft .skills img.rounded-circle {
+  border-radius: 0 !important;
+  border: 1px solid var(--rule);
+  padding: 6px;
+  background: #fff;
+}
+.theme-draft .skills h4 {
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  color: var(--graphite);
+}
+.theme-draft .skills p.text-muted {
+  font-family: var(--mono);
+  font-size: .66rem;
+  letter-spacing: .1em;
+  color: var(--ink3) !important;
+}
+
+/* soft-skill icon stacks — drop the gold */
+.theme-draft .fa-stack .text-primary { color: var(--blue) !important; }
+
+/* ==========================================================================
+   Portfolio
+   ========================================================================== */
+.theme-draft .portfolio .portfolio-item .portfolio-link .portfolio-hover {
+  background: rgba(30, 33, 36, .88);
+}
+.theme-draft .portfolio .portfolio-item img {
+  border-radius: 0;
+  border: 1px solid var(--rule);
+  border-bottom: 0;
+}
+.theme-draft .portfolio .portfolio-item .portfolio-caption {
+  background-color: transparent;
+  border: 1px solid var(--rule);
+  border-top: 0;
+  text-align: left;
+  padding: 1.1rem 1.2rem 1.3rem;
+}
+.theme-draft .portfolio .portfolio-item .portfolio-caption .portfolio-caption-heading {
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -.015em;
+  color: var(--graphite);
+}
+.theme-draft .portfolio .portfolio-item .portfolio-caption .portfolio-caption-subheading {
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: .66rem;
+  letter-spacing: .1em;
+  color: var(--blue) !important;
+}
+
+.theme-draft .portfolio-modal .modal-body h2,
+.theme-draft .portfolio-modal .modal-body .h2 {
+  font-family: var(--sans);
+  font-weight: 600;
+  letter-spacing: -.025em;
+  color: var(--graphite);
+}
+/* styles.css targets this as `.portfolio-modal .modal-content p.item-intro` */
+.theme-draft .portfolio-modal .modal-content p.item-intro,
+.theme-draft .portfolio-modal .item-intro {
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: .68rem;
+  letter-spacing: .1em;
+  color: var(--blue) !important;
+}
+.theme-draft .portText { font-family: var(--sans); font-size: .93rem; line-height: 1.72; color: var(--ink2); }
+.theme-draft .portText a { color: var(--graphite); text-decoration: none; border-bottom: 1px solid var(--red); }
+.theme-draft .portImgTitle {
+  font-family: var(--mono);
+  font-size: .66rem;
+  letter-spacing: .1em;
+  color: var(--blue);
+}
+.theme-draft .tag {
+  font-family: var(--mono) !important;
+  font-size: .62rem !important;
+  letter-spacing: .12em;
+  color: var(--ink3) !important;
+  opacity: 1 !important;
+}
+.theme-draft .portfolio-modal .img-portfolio,
+.theme-draft .portfolio-modal .img-fluid.d-block {
+  border-radius: 0;
+  border: 1px solid var(--rule);
+}
+
+/* ==========================================================================
+   Final pass — inherited colours from styles.css
+   ========================================================================== */
+/* base link colour is the old gold; specific rules above still win */
+.theme-draft a { color: var(--graphite); }
+.theme-draft a:hover { color: var(--blue); }
+.theme-draft .portfolio-hover,
+.theme-draft .portfolio-hover-content,
+.theme-draft .portfolio-hover-content * { color: #fff; }
+
+/* the Skills dropdown trigger is a .btn, which carries a 4px radius */
+.theme-draft #mainNav .nav-link.btn,
+.theme-draft #mainNav .nav-link { border-radius: 0; }
+
+.theme-draft .navbar-brand { color: var(--graphite); }
+
+/* equal-height portfolio cards so the hairline boxes align across a row */
+.theme-draft .portfolio .row > [class*="col-"] { display: flex; }
+.theme-draft .portfolio .portfolio-item { width: 100%; display: flex; flex-direction: column; }
+.theme-draft .portfolio .portfolio-item .portfolio-caption { flex: 1 1 auto; }
