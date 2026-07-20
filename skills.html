@@ -36,7 +36,58 @@
             <h3 class="section-subheading text-muted" style="margin-bottom: 2rem;">
                 A dual profile combining data science with product leadership to bridge product vision and AI opportunities.</h3>
         </div>
-        <div class="coin-stage">
+        <div class="coin-drawing">
+            <svg class="coin-annot" viewBox="0 0 900 620" aria-hidden="true" focusable="false">
+                <defs>
+                    <pattern id="hatch" width="9" height="9" patternTransform="rotate(45)"
+                             patternUnits="userSpaceOnUse">
+                        <line x1="0" y1="0" x2="0" y2="9" class="an-hatch"/>
+                    </pattern>
+                    <marker id="arrL" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto">
+                        <path d="M9,0 L0,3 L9,6 z" class="an-fill"/>
+                    </marker>
+                    <marker id="arrR" markerWidth="9" markerHeight="9" refX="1" refY="3" orient="auto">
+                        <path d="M0,0 L9,3 L0,6 z" class="an-fill"/>
+                    </marker>
+                </defs>
+
+                <!-- centre lines through the plan view -->
+                <line x1="40" y1="300" x2="560" y2="300" class="an-centre"/>
+                <line x1="300" y1="40" x2="300" y2="530" class="an-centre"/>
+
+                <!-- diameter dimension, set below the plan view so the part
+                     itself never covers it -->
+                <line x1="90" y1="516" x2="90" y2="566" class="an-ext"/>
+                <line x1="510" y1="516" x2="510" y2="566" class="an-ext"/>
+                <line x1="90" y1="556" x2="510" y2="556" class="an-dim"
+                      marker-start="url(#arrL)" marker-end="url(#arrR)"/>
+                <rect x="248" y="542" width="104" height="27" class="an-plate"/>
+                <text x="300" y="561" class="an-txt an-mid">&#216; 140</text>
+
+                <!-- section markers A—A -->
+                <text x="300" y="34" class="an-txt an-mid an-key">A</text>
+                <text x="300" y="608" class="an-txt an-mid an-key">A</text>
+
+                <!-- section view: the coin seen edge-on -->
+                <rect x="676" y="90" width="34" height="420" class="an-sect"/>
+                <rect x="676" y="90" width="34" height="420" class="an-outline"/>
+                <line x1="676" y1="300" x2="710" y2="300" class="an-centre"/>
+
+                <!-- thickness dimension -->
+                <line x1="676" y1="548" x2="710" y2="548" class="an-dim"
+                      marker-start="url(#arrL)" marker-end="url(#arrR)"/>
+                <line x1="676" y1="510" x2="676" y2="556" class="an-ext"/>
+                <line x1="710" y1="510" x2="710" y2="556" class="an-ext"/>
+                <text x="742" y="553" class="an-txt">t 8</text>
+                <text x="693" y="72" class="an-txt an-mid an-key">SECTION A&#8212;A</text>
+
+                <!-- title block -->
+                <g class="an-title">
+                    <rect x="600" y="596" width="290" height="0.1" class="an-outline"/>
+                </g>
+                <text x="600" y="614" class="an-txt an-key">PART No. MB&#8211;02</text>
+                <text x="890" y="614" class="an-txt an-end">SCALE 1:1</text>
+            </svg>
             <button type="button" class="coin" id="dualityCoin" aria-pressed="false"
                     aria-label="Flip between AI Engineering and Product Management">
                 <div class="coin-face coin-face--front">
@@ -60,7 +111,7 @@
                 </div>
             </button>
         </div>
-        <span class="coin-hint">Click the coin to flip it</span>
+        <span class="coin-hint">Click the part to rotate it</span>
     </div>
 </section>
 <!-- Skills-->

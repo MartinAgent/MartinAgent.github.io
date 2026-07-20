@@ -79,11 +79,17 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
-    // Duality coin flip
+    // Duality coin — spins a turn and a half each click so it reads as a real
+    // flip rather than a 180 degree toggle. Rotation accumulates instead of
+    // resetting, so it always spins forwards.
     const coin = document.getElementById('dualityCoin');
     if (coin) {
+        let spin = 0;
         coin.addEventListener('click', () => {
-            const flipped = coin.classList.toggle('is-flipped');
+            spin += 540;
+            coin.style.transform = 'rotateY(' + spin + 'deg)';
+            const flipped = (spin / 180) % 2 === 1;
+            coin.classList.toggle('is-flipped', flipped);
             coin.setAttribute('aria-pressed', String(flipped));
         });
     }

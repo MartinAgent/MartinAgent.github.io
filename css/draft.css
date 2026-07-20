@@ -729,3 +729,87 @@
   align-items: center;
   justify-content: center;
 }
+
+/* ==========================================================================
+   Skills — the coin as an engineering part drawing
+   Plan view (the flipping coin) sits inside an SVG annotation layer that
+   carries centre lines, a diameter callout, a hatched section view and a
+   title block. Container and overlay share one aspect ratio so the geometry
+   stays registered at any width.
+   ========================================================================== */
+.theme-draft .coin-drawing {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  aspect-ratio: 900 / 620;
+  perspective: 1800px;
+}
+.theme-draft .coin-annot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.theme-draft .an-centre {
+  stroke: var(--blue);
+  stroke-width: 1;
+  stroke-dasharray: 18 4 3 4;   /* drafting centre line */
+  opacity: .65;
+}
+.theme-draft .an-dim  { stroke: var(--blue); stroke-width: 1; }
+.theme-draft .an-ext  { stroke: var(--blue); stroke-width: 1; opacity: .7; }
+.theme-draft .an-fill { fill: var(--blue); }
+.theme-draft .an-hatch { stroke: var(--blue); stroke-width: 1; opacity: .5; }
+.theme-draft .an-sect { fill: url(#hatch); }
+.theme-draft .an-outline { fill: none; stroke: var(--graphite); stroke-width: 1; }
+.theme-draft .an-plate { fill: var(--paper); }
+.theme-draft .an-txt {
+  font-family: var(--mono);
+  font-size: 15px;
+  letter-spacing: .1em;
+  fill: var(--blue);
+}
+.theme-draft .an-key { fill: var(--graphite); font-size: 13px; }
+.theme-draft .an-mid { text-anchor: middle; }
+.theme-draft .an-end { text-anchor: end; }
+
+/* the coin itself, positioned as the plan view */
+.theme-draft .coin-drawing .coin {
+  position: absolute;
+  left: 10%;
+  top: 14.52%;
+  width: 46.67%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  max-width: none;
+  transition: transform 1150ms cubic-bezier(.18, .72, .22, 1);
+}
+.theme-draft .coin-drawing .coin-face { padding: 13% 14%; }
+.theme-draft .coin-drawing .coin-face p { font-size: .78rem; line-height: 1.5; }
+.theme-draft .coin-drawing .coin-face h4 { font-size: 1.05rem; margin-bottom: .6rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-draft .coin-drawing .coin { transition-duration: 1ms; }
+}
+
+/* below this the plan view gets too small to hold its own text, so the
+   annotations are dropped and the part becomes a plain flipping tile */
+@media (max-width: 1000px) {
+  .theme-draft .coin-annot { display: none; }
+  .theme-draft .coin-drawing {
+    aspect-ratio: auto;
+    display: flex;
+    justify-content: center;
+  }
+  .theme-draft .coin-drawing .coin {
+    position: static;
+    width: min(460px, 92vw);
+  }
+  .theme-draft .coin-drawing .coin-face { padding: 14% 15%; }
+}
+@media (max-width: 767px) {
+  .theme-draft .coin-drawing .coin { aspect-ratio: 2 / 3; }
+  .theme-draft .coin-drawing .coin-face { padding: 2rem 1.4rem; }
+}
