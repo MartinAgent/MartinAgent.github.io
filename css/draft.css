@@ -535,6 +535,12 @@
   letter-spacing: .06em;
   color: var(--ink2);
   padding: .55rem .7rem;
+  /* grid stretches every box to the tallest in its row, so centre the label
+     in whatever height it ends up with */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 /* the coin keeps its circle — a turned part reads fine on a drawing */
