@@ -819,3 +819,25 @@
   .theme-draft .coin-drawing .coin { aspect-ratio: 2 / 3; }
   .theme-draft .coin-drawing .coin-face { padding: 2rem 1.4rem; }
 }
+
+/* ==========================================================================
+   Portfolio — hover caption + ongoing (non-clickable) card
+   ========================================================================== */
+/* .tag is themed grey for the modals, but the same class sits on the dark
+   hover overlay where grey-on-graphite is ~1.6:1. Keep it near-white there. */
+.theme-draft .portfolio-hover .tag {
+  color: #F2F1EC !important;
+  opacity: 1 !important;
+}
+
+/* an experience with no write-up yet: no modal, no pointer, and the caption
+   centres because there is no plus icon above it to clear */
+.theme-draft .portfolio-link--static { cursor: default; }
+.theme-draft .portfolio-link--static .tag { bottom: 0; }
+
+/* the existing portfolio art is all 3:2 — pin the ratio so a differently
+   proportioned photo cannot push its caption out of line with the row */
+.theme-draft .img-portfolio {
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
