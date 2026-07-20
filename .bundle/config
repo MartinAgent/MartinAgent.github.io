@@ -1,2 +1,0 @@
----
-BUNDLE_SSL_CA_CERT: "/opt/homebrew/etc/openssl@3/cert.pem"
