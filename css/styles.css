@@ -11636,6 +11636,11 @@ nav .nav-item .nav-link.active::after {
   color: white;
   border-radius: 100%;
 }
+/* quebec.jpg is really a PNG with an alpha channel, so without this the
+   circle's gold background shows through where the artwork is transparent. */
+.timeline > li .timeline-image img {
+  background-color: #fff;
+}
 .timeline > li .timeline-image h4, .timeline > li .timeline-image .h4 {
   font-size: 10px;
   line-height: 14px;
@@ -12024,7 +12029,7 @@ header.masthead {
 
 .text-content {
   text-align: left;
-  max-width: 40%;
+  max-width: 55%;
 }
 
 .text-content h1 {
@@ -12050,6 +12055,13 @@ header.masthead {
   font-weight: 400;
   color: #666;
   margin-bottom: 1rem;
+}
+
+/* Inline inside the h1: keep the phrase intact so a narrow viewport breaks
+   after "Martin," rather than mid-word. */
+.text-content h1 .based-in {
+  white-space: nowrap;
+  margin-bottom: 0;
 }
 
 .text-content .description {
