@@ -22,10 +22,10 @@ title: Martin's Portfolio
 email: martinblanckaert@yahoo.fr
 description: >- # this means to ignore newlines until "baseurl:"
   Hi ! This is Martin Blanckaert's portfolio, containing information about my projects and education.
-domain: my-site.github.io
-baseurl: martin-blckrt.github.io/ # the subpath of your site, e.g. /blog
-url: https://my-site.github.io # the base hostname & protocol for your site, e.g. http://example.com
-github_username:  Martin-blckrt
+domain: martin-blanckaert.com
+baseurl: ""
+url: https://martin-blanckaert.com
+github_username: MartinAgent
 
 # Build settings
 remote_theme: https://github.com/StartBootstrap/startbootstrap-agency
