@@ -79,6 +79,15 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     });
 
+    // Duality coin flip
+    const coin = document.getElementById('dualityCoin');
+    if (coin) {
+        coin.addEventListener('click', () => {
+            const flipped = coin.classList.toggle('is-flipped');
+            coin.setAttribute('aria-pressed', String(flipped));
+        });
+    }
+
     const navPlaceholder = document.getElementById('mainNav');
     const cachedNav = localStorage.getItem('nav');
     if (cachedNav) {
