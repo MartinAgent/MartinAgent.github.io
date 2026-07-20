@@ -12029,7 +12029,7 @@ header.masthead {
 
 .text-content {
   text-align: left;
-  max-width: 55%;
+  max-width: 40%;
 }
 
 .text-content h1 {
@@ -12057,9 +12057,10 @@ header.masthead {
   margin-bottom: 1rem;
 }
 
-/* Inline inside the h1: keep the phrase intact so a narrow viewport breaks
-   after "Martin," rather than mid-word. */
-.text-content h1 .based-in {
+/* Inline inside a heading: keep the phrase intact so a narrow viewport breaks
+   between the phrases rather than mid-word. */
+.text-content h1 .based-in,
+.text-content h2 .based-in {
   white-space: nowrap;
   margin-bottom: 0;
 }
