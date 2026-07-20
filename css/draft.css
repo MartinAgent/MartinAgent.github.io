@@ -326,7 +326,7 @@
   letter-spacing: -.015em;
   line-height: 1.35;
   color: var(--graphite);
-  margin-bottom: .8rem;
+  margin-bottom: 1.25rem;
   text-transform: none;
 }
 .theme-draft .aboutRow { font-size: .93rem; line-height: 1.72; color: var(--ink2); }
@@ -687,12 +687,24 @@
 /* ==========================================================================
    Tweaks
    ========================================================================== */
-/* styles.css draws a gold bar as .active::after, on top of our red underline.
-   Only the background is cleared so the dropdown caret's border triangle
-   (same pseudo-element) survives. */
-.theme-draft #mainNav .navbar-nav .nav-link.active::after {
+/* styles.css draws its active marker as .active::after — but Bootstrap's
+   dropdown caret is the *same* pseudo-element, so the two cases split:
+   plain links drop the pseudo entirely, the Skills toggle gets its caret
+   put back inline (otherwise its border shows as a bar under our red rule). */
+.theme-draft #mainNav .navbar-nav .nav-link.active:not(.dropdown-toggle)::after {
+  content: none;
+}
+.theme-draft #mainNav .navbar-nav .dropdown-toggle.active::after {
+  position: static;
   background: transparent;
+  width: 0;
   height: 0;
+  border-top: .3em solid currentColor;
+  border-right: .3em solid transparent;
+  border-left: .3em solid transparent;
+  border-bottom: 0;
+  margin-left: .35em;
+  vertical-align: .18em;
 }
 
 /* section headings, a size up across every page */
