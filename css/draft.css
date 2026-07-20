@@ -683,3 +683,37 @@
 .theme-draft .portfolio .row > [class*="col-"] { display: flex; }
 .theme-draft .portfolio .portfolio-item { width: 100%; display: flex; flex-direction: column; }
 .theme-draft .portfolio .portfolio-item .portfolio-caption { flex: 1 1 auto; }
+
+/* ==========================================================================
+   Tweaks
+   ========================================================================== */
+/* styles.css draws a gold bar as .active::after, on top of our red underline.
+   Only the background is cleared so the dropdown caret's border triangle
+   (same pseudo-element) survives. */
+.theme-draft #mainNav .navbar-nav .nav-link.active::after {
+  background: transparent;
+  height: 0;
+}
+
+/* section headings, a size up across every page */
+.theme-draft .section-heading,
+.theme-draft .page-section h2.section-heading,
+.theme-draft .page-section .section-heading.h2 {
+  font-size: .95rem;
+  letter-spacing: .18em;
+  margin-bottom: .8rem;
+}
+
+/* about rows: breathing room after each, slightly smaller photos */
+.theme-draft .aboutRow { padding: 3.2rem 0 3.2rem; }
+.theme-draft .aboutRow img:not(.emoji) {
+  max-width: 87%;
+  margin-inline: auto;
+}
+
+/* the birth marker holds text rather than an image — centre it */
+.theme-draft .timeline > li:last-child .timeline-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
