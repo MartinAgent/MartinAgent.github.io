@@ -1,0 +1,401 @@
+/* ==========================================================================
+   DRAFTING TABLE — homepage theme
+   --------------------------------------------------------------------------
+   Every rule is scoped under .theme-draft, which is set on <body> in
+   index.html only. The other pages load styles.css alone and are untouched.
+   To revert: drop the class, drop the <link> to this file.
+   ========================================================================== */
+
+.theme-draft {
+  --paper:    #F2F1EC;
+  --graphite: #1E2124;
+  --ink2:     #3A3E43;
+  --ink3:     #5A5F65;
+  --blue:     #2B4C7E;
+  --red:      #C1443A;
+  --rule:     #CAC7BC;
+
+  --sans: "Inter", ui-sans-serif, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(to right,  rgba(43, 76, 126, .055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(43, 76, 126, .055) 1px, transparent 1px);
+  background-size: 28px 28px;
+  color: var(--graphite);
+  font-family: var(--sans);
+}
+
+/* let the drafting grid show through the old section backgrounds.
+   .bg-light is a Bootstrap utility declared !important, so this has to match. */
+.theme-draft .masthead,
+.theme-draft .page-section,
+.theme-draft .bg-light,
+.theme-draft .footer { background: transparent !important; }
+
+.theme-draft ::selection { background: var(--blue); color: var(--paper); }
+
+/* ---------- navigation ---------- */
+.theme-draft #mainNav {
+  background: rgba(242, 241, 236, .93);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--rule);
+  box-shadow: none;
+  padding: 0;
+}
+.theme-draft #mainNav .container { padding: .85rem 2rem; }
+
+/* swap the white logo for a drafting-style wordmark (homepage only) */
+.theme-draft .navbar-brand img { display: none; }
+.theme-draft .navbar-brand::after {
+  content: "M. BLANCKAERT";
+  font-family: var(--mono);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  color: var(--graphite);
+}
+
+.theme-draft #mainNav .navbar-nav .nav-link {
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--ink3) !important;
+  padding: .25rem 0;
+  margin: 0 .85rem;
+  border-bottom: 2px solid transparent;
+}
+.theme-draft #mainNav .navbar-nav .nav-link:hover { color: var(--graphite) !important; }
+.theme-draft #mainNav .navbar-nav .nav-link.active {
+  color: var(--graphite) !important;
+  border-bottom-color: var(--red);
+}
+.theme-draft #mainNav .dropdown-menu {
+  border-radius: 0;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  box-shadow: none;
+  padding: .35rem 0;
+}
+.theme-draft #mainNav .dropdown-item { padding: .3rem 1rem; }
+.theme-draft .navbar-toggler {
+  border-radius: 0;
+  border: 1px solid var(--rule);
+  color: var(--ink3);
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+/* buttons — square, mono, no gold */
+.theme-draft #mainNav .btn-primary,
+.theme-draft .hero-actions .btn-primary {
+  border-radius: 0;
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .14em;
+  font-weight: 500;
+}
+.theme-draft #mainNav .btn-primary {
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink3);
+  padding: .5rem 1.05rem;
+}
+.theme-draft #mainNav .btn-primary:hover {
+  background: var(--graphite);
+  border-color: var(--graphite);
+  color: var(--paper);
+}
+.theme-draft .hero-actions .btn-primary {
+  background: var(--graphite);
+  border: 1px solid var(--graphite);
+  color: var(--paper);
+  padding: .65rem 1.35rem;
+}
+.theme-draft .hero-actions .btn-primary:hover { background: var(--blue); border-color: var(--blue); }
+
+/* ---------- hero ---------- */
+.theme-draft .masthead { padding: 8.5rem 1rem 4rem; }
+.theme-draft .header-content { align-items: flex-start; gap: 4rem; }
+.theme-draft .text-content { max-width: none; }
+
+.theme-draft .sheet-label {
+  font-family: var(--mono);
+  font-size: .66rem;
+  letter-spacing: .18em;
+  color: var(--blue);
+  margin-bottom: 1.25rem;
+}
+
+.theme-draft .text-content h1,
+.theme-draft .text-content .text-highlight {
+  font-size: clamp(1.9rem, 3.9vw, 2.85rem);
+  font-weight: 600;
+  letter-spacing: -.035em;
+  line-height: 1.08;
+  margin: 0;
+}
+.theme-draft .text-content .highlight { color: var(--graphite); }
+.theme-draft .text-content .text-highlight { color: var(--blue); }
+.theme-draft .text-content .based-in {
+  font-size: clamp(1.45rem, 3vw, 2.1rem);
+  font-weight: 300;
+  color: var(--ink3);
+}
+
+/* dimension line, drafting style */
+.theme-draft .dim {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  margin: 1.15rem 0 1.4rem;
+  color: var(--blue);
+  font-family: var(--mono);
+  font-size: .63rem;
+  letter-spacing: .1em;
+}
+.theme-draft .dim .bar {
+  position: relative;
+  flex: 1 1 auto;
+  max-width: 240px;
+  height: 1px;
+  background: var(--blue);
+}
+.theme-draft .dim .bar::before,
+.theme-draft .dim .bar::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  width: 1px;
+  height: 9px;
+  background: var(--blue);
+}
+.theme-draft .dim .bar::before { left: 0; }
+.theme-draft .dim .bar::after  { right: 0; }
+
+.theme-draft .description {
+  font-family: var(--sans);
+  font-size: .95rem;
+  line-height: 1.7;
+  color: var(--ink2);
+  max-width: 46ch;
+}
+.theme-draft .description a {
+  color: var(--graphite);
+  text-decoration: none;
+  border-bottom: 1px solid var(--red);
+}
+.theme-draft .description a:hover { background: rgba(193, 68, 58, .1); }
+
+.theme-draft .social-icon {
+  border-radius: 0;
+  border: 1px solid var(--rule);
+  color: var(--ink3);
+  background: transparent;
+}
+.theme-draft .social-icon:hover { border-color: var(--graphite); color: var(--graphite); }
+
+.theme-draft .expertise {
+  font-family: var(--mono);
+  font-size: .62rem;
+  letter-spacing: .14em;
+  color: var(--ink3);
+  margin-top: 1.6rem;
+}
+
+/* figure plate with registration marks */
+.theme-draft .plate {
+  position: relative;
+  border: 1px solid var(--graphite);
+  padding: 7px;
+  background: #fff;
+}
+.theme-draft .plate .profile-image {
+  border-radius: 0;
+  width: 100%;
+  display: block;
+  filter: grayscale(1) contrast(1.06);
+}
+.theme-draft .cross { position: absolute; width: 11px; height: 11px; }
+.theme-draft .cross::before,
+.theme-draft .cross::after { content: ""; position: absolute; background: var(--red); }
+.theme-draft .cross::before { left: 5px; top: 0; width: 1px; height: 11px; }
+.theme-draft .cross::after  { top: 5px; left: 0; height: 1px; width: 11px; }
+.theme-draft .cross.c1 { top: -6px; left: -6px; }
+.theme-draft .cross.c2 { top: -6px; right: -6px; }
+.theme-draft .cross.c3 { bottom: -6px; left: -6px; }
+.theme-draft .cross.c4 { bottom: -6px; right: -6px; }
+.theme-draft .fig-cap {
+  display: flex;
+  justify-content: space-between;
+  margin-top: .7rem;
+  font-family: var(--mono);
+  font-size: .61rem;
+  letter-spacing: .1em;
+  color: var(--ink3);
+}
+
+/* ---------- about ---------- */
+.theme-draft #about { padding-top: 4rem; }
+
+/* the old layout pulled the rows up under the heading with a -8rem margin;
+   the drafting rows set their own rhythm, so neutralise it and left-align */
+.theme-draft #about .text-center {
+  margin-bottom: 2.5rem !important;
+  text-align: left !important;
+  width: 100%;
+}
+.theme-draft .aboutContainer { align-items: stretch; }
+@media (min-width: 992px) {
+  .theme-draft .aboutContainer { padding-left: 0; padding-right: 0; }
+}
+
+/* only the section intro, not the row titles — they share .section-heading */
+.theme-draft #about .text-center .section-heading {
+  font-family: var(--mono);
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  color: var(--blue);
+}
+.theme-draft #about .section-subheading {
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: .9rem;
+  color: var(--ink3);
+}
+
+.theme-draft .aboutContainer { counter-reset: sheet; gap: 0; }
+
+.theme-draft .aboutRow {
+  counter-increment: sheet;
+  position: relative;
+  gap: 3rem;
+  border-top: 1px solid var(--rule);
+  padding: 3.2rem 0 .4rem;
+  margin: 0;
+  width: 100%;
+}
+.theme-draft .aboutRow::before {
+  content: "\00A7 " counter(sheet, decimal-leading-zero);
+  position: absolute;
+  top: 1.1rem;
+  left: 0;
+  font-family: var(--mono);
+  font-size: .63rem;
+  letter-spacing: .14em;
+  color: var(--blue);
+}
+
+/* Bootstrap's percentage columns plus the row's gap overflowed the container.
+   Flex ratios keep the same proportions and let the gap subtract properly. */
+.theme-draft .aboutRow > [class*="col-sm-"] {
+  width: auto;
+  max-width: none;
+  min-width: 0;
+  padding: 0;
+}
+.theme-draft .aboutRow > .col-sm-4 { flex: 4 1 0; }
+.theme-draft .aboutRow > .col-sm-5 { flex: 5 1 0; }
+.theme-draft .aboutRow > .col-sm-6 { flex: 6 1 0; }
+.theme-draft .aboutRow > .col-sm-7 { flex: 7 1 0; }
+.theme-draft .aboutRow > .col-sm-8 { flex: 8 1 0; }
+
+.theme-draft #about .aboutSectionTitle {
+  font-family: var(--sans);
+  font-size: 1.16rem;
+  font-weight: 600;
+  letter-spacing: -.015em;
+  line-height: 1.35;
+  color: var(--graphite);
+  margin-bottom: .8rem;
+  text-transform: none;
+}
+.theme-draft .aboutRow { font-size: .93rem; line-height: 1.72; color: var(--ink2); }
+.theme-draft .aboutRow a { color: var(--graphite); text-decoration: none; border-bottom: 1px solid var(--red); }
+.theme-draft .aboutRow a b { font-weight: 600; }
+.theme-draft .aboutRow img:not(.emoji) {
+  border-radius: 0;
+  border: 1px solid var(--rule);
+  filter: grayscale(.55) contrast(1.04);
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.theme-draft .aboutRow ul { padding-left: 1.1rem; margin-top: .6rem; }
+.theme-draft .aboutRow li { line-height: 1.9 !important; }
+
+.theme-draft .intermediateMsg {
+  border-top: 1px solid var(--rule);
+  padding: 3rem 0 1rem;
+  width: 100%;
+  color: var(--blue);
+}
+.theme-draft #about .intermediateMsg .aboutSectionTitle {
+  font-family: var(--mono);
+  font-size: .82rem;
+  font-weight: 400;
+  letter-spacing: .06em;
+  color: var(--blue);
+  line-height: 1.9 !important;
+}
+
+/* ---------- footer ---------- */
+.theme-draft .footer {
+  border-top: 1px solid var(--rule);
+  padding: 2rem 0;
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .1em;
+  color: var(--ink3);
+}
+.theme-draft .footer .btn-social {
+  border-radius: 0;
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--ink3);
+}
+.theme-draft .footer .btn-social:hover {
+  background: var(--graphite);
+  border-color: var(--graphite);
+  color: var(--paper);
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 768px) {
+  .theme-draft .masthead { padding: 6.5rem 1rem 3rem; }
+  .theme-draft .header-content { gap: 2.5rem; }
+
+  /* keep wordmark, toggler and resume on a single row */
+  .theme-draft #mainNav .container {
+    padding: .7rem 1rem;
+    flex-wrap: nowrap;
+    gap: .4rem;
+  }
+  .theme-draft .navbar-brand::after { font-size: .6rem; letter-spacing: .12em; }
+  .theme-draft #mainNav .btn-primary { padding: .4rem .65rem; font-size: .58rem; letter-spacing: .08em; }
+  .theme-draft .navbar-toggler { padding: .35rem .55rem; font-size: .58rem; }
+
+  /* the base mobile rules centre the hero; drafting wants it left */
+  .theme-draft .header-content .text-content { text-align: left !important; }
+  .theme-draft .dim { justify-content: flex-start; }
+  .theme-draft .hero-actions { justify-content: flex-start; }
+  .theme-draft .description { max-width: none; }
+
+  /* base rules add margin-top to the hero image, which opened a white gap
+     inside the plate now that the plate has its own padding */
+  .theme-draft .header-content .image-content img { margin-top: 0; }
+
+  .theme-draft .aboutRow {
+    flex-direction: column;
+    gap: 1.8rem;
+    padding-top: 3rem;
+  }
+  .theme-draft .aboutRow > [class*="col-sm-"] { flex: 1 1 auto; width: 100%; }
+  .theme-draft .fig-cap { font-size: .58rem; }
+}
