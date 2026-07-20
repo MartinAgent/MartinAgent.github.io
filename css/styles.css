@@ -12006,10 +12006,25 @@ header.masthead {
   flex: 1; /* Makes each section take up equal width */
 }
 
+/* The contact button and the social icons sit on one flex row. Without
+   wrapping they measure ~416px and force the whole document wider than a
+   phone viewport, which also stretches the fixed navbar. */
+.hero-actions {
+  flex-wrap: wrap;
+}
+
 @media (max-width: 768px) { /* Adjust for mobile screens */
   .header-content {
     flex-direction: column; /* Stacks the content vertically */
     align-items: center; /* Centers items */
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .social-icons {
+    margin-left: 0;
   }
 
   .header-content .text-content,
