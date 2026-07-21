@@ -94,6 +94,22 @@ window.addEventListener('DOMContentLoaded', event => {
         });
     }
 
+    // Portfolio modal videos (replacing what used to be GIFs): a <video
+    // autoplay> inside a Bootstrap modal that starts out display:none does
+    // not reliably autoplay once the modal opens, so play/pause it explicitly
+    // on Bootstrap's own show/hide events. Resetting on hide means it starts
+    // from frame one every time the modal is reopened, same as a GIF would.
+    document.querySelectorAll('.portfolio-modal').forEach(modal => {
+        const videos = modal.querySelectorAll('video');
+        if (!videos.length) return;
+        modal.addEventListener('shown.bs.modal', () => {
+            videos.forEach(v => { v.play().catch(() => {}); });
+        });
+        modal.addEventListener('hide.bs.modal', () => {
+            videos.forEach(v => { v.pause(); v.currentTime = 0; });
+        });
+    });
+
     const navPlaceholder = document.getElementById('mainNav');
     const cachedNav = localStorage.getItem('nav');
     if (cachedNav) {
